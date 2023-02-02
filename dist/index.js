@@ -10,4 +10,3 @@ var _default = {
   component: _AuthorizedUsersTable.default
 };
 exports.default = _default;
-module.exports = exports.default;

@@ -1,22 +1,39 @@
 "use strict";
 
+require("core-js/modules/es.symbol.description.js");
+require("core-js/modules/es.weak-map.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = AuthorizedUsersTable;
+require("core-js/modules/web.dom-collections.iterator.js");
+require("core-js/modules/es.promise.js");
+require("core-js/modules/es.array.includes.js");
+require("core-js/modules/es.string.includes.js");
+require("core-js/modules/es.regexp.to-string.js");
 var _react = _interopRequireWildcard(require("react"));
 var _antd = require("antd");
 var _componentMessageBus = require("@ivoyant/component-message-bus");
 require("./styles.css");
 var _icons = require("@ant-design/icons");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+const _excluded = ["properties", "datasources"],
+  _excluded2 = ["editing", "dataIndex", "title", "inputType", "record", "index", "children"];
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 function AuthorizedUsersTable(_ref) {
+  var _props$data, _lineLevelAuthorizedU, _lineLevelAuthorizedU2, _accountAuthorizedUse, _subLevelFlag$reasons;
   let {
-    properties,
-    datasources,
-    ...props
-  } = _ref;
+      properties,
+      datasources
+    } = _ref,
+    props = _objectWithoutProperties(_ref, _excluded);
   const [searchText, setSearchText] = (0, _react.useState)('');
   const {
     workflows,
@@ -25,31 +42,32 @@ function AuthorizedUsersTable(_ref) {
   const {
     accountAuthorizedUsersFlag,
     lineLevelAuthorizedUsersFlag
-  } = props?.data?.data;
-  const subLevelFlag = lineLevelAuthorizedUsersFlag?.find(_ref2 => {
+  } = props === null || props === void 0 ? void 0 : (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.data;
+  const subLevelFlag = lineLevelAuthorizedUsersFlag === null || lineLevelAuthorizedUsersFlag === void 0 ? void 0 : (_lineLevelAuthorizedU = lineLevelAuthorizedUsersFlag.find(_ref2 => {
+    var _window$sessionStorag;
     let {
       ctn
     } = _ref2;
-    return ctn === window[sessionStorage.tabId]?.NEW_CTN;
-  })?.features?.find(_ref3 => {
+    return ctn === ((_window$sessionStorag = window[sessionStorage.tabId]) === null || _window$sessionStorag === void 0 ? void 0 : _window$sessionStorag.NEW_CTN);
+  })) === null || _lineLevelAuthorizedU === void 0 ? void 0 : (_lineLevelAuthorizedU2 = _lineLevelAuthorizedU.features) === null || _lineLevelAuthorizedU2 === void 0 ? void 0 : _lineLevelAuthorizedU2.find(_ref3 => {
     let {
       feature
     } = _ref3;
     return feature === 'authorizedUsers';
   });
-  const showAuthUsers = accountAuthorizedUsersFlag?.enable && subLevelFlag?.enable;
-  let reasons = accountAuthorizedUsersFlag?.reasons?.length ? accountAuthorizedUsersFlag.reasons : subLevelFlag?.reasons?.length ? subLevelFlag?.reasons : [];
+  const showAuthUsers = (accountAuthorizedUsersFlag === null || accountAuthorizedUsersFlag === void 0 ? void 0 : accountAuthorizedUsersFlag.enable) && (subLevelFlag === null || subLevelFlag === void 0 ? void 0 : subLevelFlag.enable);
+  let reasons = accountAuthorizedUsersFlag !== null && accountAuthorizedUsersFlag !== void 0 && (_accountAuthorizedUse = accountAuthorizedUsersFlag.reasons) !== null && _accountAuthorizedUse !== void 0 && _accountAuthorizedUse.length ? accountAuthorizedUsersFlag.reasons : subLevelFlag !== null && subLevelFlag !== void 0 && (_subLevelFlag$reasons = subLevelFlag.reasons) !== null && _subLevelFlag$reasons !== void 0 && _subLevelFlag$reasons.length ? subLevelFlag === null || subLevelFlag === void 0 ? void 0 : subLevelFlag.reasons : [];
   const EditableCell = _ref4 => {
     let {
-      editing,
-      dataIndex,
-      title,
-      inputType,
-      record,
-      index,
-      children,
-      ...restProps
-    } = _ref4;
+        editing,
+        dataIndex,
+        title,
+        inputType,
+        record,
+        index,
+        children
+      } = _ref4,
+      restProps = _objectWithoutProperties(_ref4, _excluded2);
     const inputNode = inputType === 'number' ? /*#__PURE__*/_react.default.createElement(_antd.InputNumber, {
       autoComplete: "off"
     }) : /*#__PURE__*/_react.default.createElement(_antd.Input, {
@@ -69,7 +87,7 @@ function AuthorizedUsersTable(_ref) {
       autoComplete: "off",
       rules: [{
         required: dataIndex === 'firstName' || dataIndex === 'lastName' ? true : false,
-        message: `Please Input ${title}`
+        message: "Please Input ".concat(title)
       }]
     }, inputNode)) : children);
   };
@@ -85,19 +103,18 @@ function AuthorizedUsersTable(_ref) {
   const [error, setError] = (0, _react.useState)(null);
   const isEditing = record => record.key === editingKey;
   const edit = record => {
-    form.setFieldsValue({
+    form.setFieldsValue(_objectSpread({
       firstName: '',
       lastName: '',
       middleInitial: '',
-      suffix: '',
-      ...record
-    });
+      suffix: ''
+    }, record));
     setAddKey('');
-    setSelectedRowKeys([`${record.key}`]);
+    setSelectedRowKeys(["".concat(record.key)]);
     setEditingKey(record.key);
   };
   const handleAdd = () => {
-    const key = `${data?.length}`;
+    const key = "".concat(data === null || data === void 0 ? void 0 : data.length);
     setData([...data, {
       key: key,
       firstName: '',
@@ -113,7 +130,7 @@ function AuthorizedUsersTable(_ref) {
       suffix: ''
     });
     setAddKey(key);
-    setSelectedRowKeys([`${key}`]);
+    setSelectedRowKeys(["".concat(key)]);
     setEditingKey(key);
   };
   const cancel = () => {
@@ -123,7 +140,7 @@ function AuthorizedUsersTable(_ref) {
   const handleDelete = key => {
     handleCalls('delete', key, data);
   };
-  const save = async function (key) {
+  const save = async function save(key) {
     let type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'update';
     try {
       const row = await form.validateFields();
@@ -131,10 +148,7 @@ function AuthorizedUsersTable(_ref) {
       const index = newData.findIndex(item => key === item.key);
       if (index > -1) {
         const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row
-        });
+        newData.splice(index, 1, _objectSpread(_objectSpread({}, item), row));
         handleCalls(type, key, newData);
       } else {
         newData.push(row);
@@ -154,14 +168,15 @@ function AuthorizedUsersTable(_ref) {
     }
   }, [loadData, showAuthUsers]);
   const getAuthorizedUsers = () => {
+    var _window$sessionStorag2;
     const {
       workflow,
       datasource,
       responseMapping,
       successStates,
       errorStates
-    } = workflows?.get;
-    const ban = window[sessionStorage.tabId]?.NEW_BAN;
+    } = workflows === null || workflows === void 0 ? void 0 : workflows.get;
+    const ban = (_window$sessionStorag2 = window[sessionStorage.tabId]) === null || _window$sessionStorag2 === void 0 ? void 0 : _window$sessionStorag2.NEW_BAN;
     const registrationId = workflow.concat('.').concat(ban);
     setLoading(true);
     _componentMessageBus.MessageBus.send('WF.'.concat(workflow).concat('.INIT'), {
@@ -193,21 +208,23 @@ function AuthorizedUsersTable(_ref) {
     const isSuccess = successStates.includes(eventData.value);
     const isError = errorStates.includes(eventData.value);
     if (isSuccess || isError) {
-      if (isSuccess && eventData?.event?.data?.data?.length) {
-        const successData = eventData?.event?.data?.data?.map(_ref5 => {
+      var _eventData$event, _eventData$event$data, _eventData$event$data2;
+      if (isSuccess && eventData !== null && eventData !== void 0 && (_eventData$event = eventData.event) !== null && _eventData$event !== void 0 && (_eventData$event$data = _eventData$event.data) !== null && _eventData$event$data !== void 0 && (_eventData$event$data2 = _eventData$event$data.data) !== null && _eventData$event$data2 !== void 0 && _eventData$event$data2.length) {
+        var _eventData$event2, _eventData$event2$dat, _eventData$event2$dat2;
+        const successData = eventData === null || eventData === void 0 ? void 0 : (_eventData$event2 = eventData.event) === null || _eventData$event2 === void 0 ? void 0 : (_eventData$event2$dat = _eventData$event2.data) === null || _eventData$event2$dat === void 0 ? void 0 : (_eventData$event2$dat2 = _eventData$event2$dat.data) === null || _eventData$event2$dat2 === void 0 ? void 0 : _eventData$event2$dat2.map(_ref5 => {
           let {
             id,
             name
           } = _ref5;
-          return {
-            key: id,
-            ...name
-          };
+          return _objectSpread({
+            key: id
+          }, name);
         });
         setData(successData);
       }
       if (isError) {
-        setError(eventData?.event?.data?.message || 'No authorized users found!');
+        var _eventData$event3, _eventData$event3$dat;
+        setError((eventData === null || eventData === void 0 ? void 0 : (_eventData$event3 = eventData.event) === null || _eventData$event3 === void 0 ? void 0 : (_eventData$event3$dat = _eventData$event3.data) === null || _eventData$event3$dat === void 0 ? void 0 : _eventData$event3$dat.message) || 'No authorized users found!');
       }
       setLoadData(false);
       setLoading(false);
@@ -215,6 +232,7 @@ function AuthorizedUsersTable(_ref) {
     }
   };
   const handleCalls = (type, key, data) => {
+    var _window$sessionStorag3;
     const {
       workflow,
       datasource,
@@ -232,22 +250,22 @@ function AuthorizedUsersTable(_ref) {
       }
     });
     _componentMessageBus.MessageBus.subscribe(registrationId, 'WF.'.concat(workflow).concat('.STATE.CHANGE'), handleResponse(type, key, data, successStates, errorStates));
-    const currentUser = data?.find(user => key === user.key);
+    const currentUser = data === null || data === void 0 ? void 0 : data.find(user => key === user.key);
     let request = {
       params: {
-        ban: window[sessionStorage.tabId]?.NEW_BAN,
-        id: currentUser?.key
+        ban: (_window$sessionStorag3 = window[sessionStorage.tabId]) === null || _window$sessionStorag3 === void 0 ? void 0 : _window$sessionStorag3.NEW_BAN,
+        id: currentUser === null || currentUser === void 0 ? void 0 : currentUser.key
       }
     };
     const name = {
-      firstName: currentUser?.firstName || '',
-      lastName: currentUser?.lastName,
-      middleInitial: currentUser?.middleInitial || '',
-      suffix: currentUser?.suffix || ''
+      firstName: (currentUser === null || currentUser === void 0 ? void 0 : currentUser.firstName) || '',
+      lastName: currentUser === null || currentUser === void 0 ? void 0 : currentUser.lastName,
+      middleInitial: (currentUser === null || currentUser === void 0 ? void 0 : currentUser.middleInitial) || '',
+      suffix: (currentUser === null || currentUser === void 0 ? void 0 : currentUser.suffix) || ''
     };
     if (type === 'update') {
       request.body = {
-        id: currentUser?.key,
+        id: currentUser === null || currentUser === void 0 ? void 0 : currentUser.key,
         name: name
       };
     } else if (type === 'add') {
@@ -277,7 +295,7 @@ function AuthorizedUsersTable(_ref) {
           setData(data.filter(item => item.key !== key));
           setDeletingKey(null);
         } else {
-          const finalData = newData?.map(item => {
+          const finalData = newData === null || newData === void 0 ? void 0 : newData.map(item => {
             if (item.new) {
               delete item.new;
             }
@@ -293,14 +311,15 @@ function AuthorizedUsersTable(_ref) {
         }
         setCheck(false);
         _antd.notification['success']({
-          message: `${type.charAt(0).toUpperCase() + type.slice(1)} Authorized User`,
-          description: `Successfully ${type === 'add' ? `${type}ed` : `${type}d`} the authorized user!`
+          message: "".concat(type.charAt(0).toUpperCase() + type.slice(1), " Authorized User"),
+          description: "Successfully ".concat(type === 'add' ? "".concat(type, "ed") : "".concat(type, "d"), " the authorized user!")
         });
       }
       if (isError) {
+        var _eventData$event4, _eventData$event4$dat;
         _antd.notification['error']({
-          message: `${type.charAt(0).toUpperCase() + type.slice(1)} Authorized User`,
-          description: eventData?.event?.data?.message || `Error while ${type} authorized user!`
+          message: "".concat(type.charAt(0).toUpperCase() + type.slice(1), " Authorized User"),
+          description: (eventData === null || eventData === void 0 ? void 0 : (_eventData$event4 = eventData.event) === null || _eventData$event4 === void 0 ? void 0 : (_eventData$event4$dat = _eventData$event4.data) === null || _eventData$event4$dat === void 0 ? void 0 : _eventData$event4$dat.message) || "Error while ".concat(type, " authorized user!")
         });
       }
       setLoading(false);
@@ -328,7 +347,7 @@ function AuthorizedUsersTable(_ref) {
     dataIndex: 'operation',
     render: (_, record) => {
       const editable = isEditing(record);
-      return editable && !record?.new ? /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement("a", {
+      return editable && !(record !== null && record !== void 0 && record.new) ? /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement("a", {
         href: "#!",
         onClick: () => save(record.key),
         style: {
@@ -344,14 +363,14 @@ function AuthorizedUsersTable(_ref) {
         shape: "circle",
         disabled: (deletingKey || editingKey !== '' || addKey !== '') && !record.new,
         onClick: () => {
-          if (record?.new) {
-            setData(data.filter(item => item.key !== record?.key));
+          if (record !== null && record !== void 0 && record.new) {
+            setData(data.filter(item => item.key !== (record === null || record === void 0 ? void 0 : record.key)));
             setEditingKey('');
             setAddKey('');
             setSelectedRowKeys([]);
             setDeletingKey(null);
           } else {
-            setSelectedRowKeys([`${record.key}`]);
+            setSelectedRowKeys(["".concat(record.key)]);
             setDeletingKey(record.key);
           }
         },
@@ -359,7 +378,7 @@ function AuthorizedUsersTable(_ref) {
       }), /*#__PURE__*/_react.default.createElement(_antd.Button, {
         type: "link",
         shape: "circle",
-        disabled: deletingKey || editingKey !== '' || record?.new,
+        disabled: deletingKey || editingKey !== '' || (record === null || record === void 0 ? void 0 : record.new),
         onClick: () => edit(record),
         icon: /*#__PURE__*/_react.default.createElement(_icons.EditOutlined, null)
       }));
@@ -369,8 +388,7 @@ function AuthorizedUsersTable(_ref) {
     if (!col.editable) {
       return col;
     }
-    return {
-      ...col,
+    return _objectSpread(_objectSpread({}, col), {}, {
       onCell: record => ({
         record,
         inputType: col.dataIndex === 'text',
@@ -378,22 +396,23 @@ function AuthorizedUsersTable(_ref) {
         title: col.title,
         editing: isEditing(record)
       })
-    };
+    });
   });
   const handleSearch = value => {
     setSearchText(value);
   };
-  const filteredData = data?.filter(_ref6 => {
+  const filteredData = data === null || data === void 0 ? void 0 : data.filter(_ref6 => {
+    var _firstName$toLowerCas, _lastName$toLowerCase;
     let {
       firstName,
       lastName
     } = _ref6;
-    return searchText === '' || firstName?.toLowerCase()?.includes(searchText?.toLowerCase()) || lastName?.toLowerCase()?.includes(searchText?.toLowerCase());
+    return searchText === '' || (firstName === null || firstName === void 0 ? void 0 : (_firstName$toLowerCas = firstName.toLowerCase()) === null || _firstName$toLowerCas === void 0 ? void 0 : _firstName$toLowerCas.includes(searchText === null || searchText === void 0 ? void 0 : searchText.toLowerCase())) || (lastName === null || lastName === void 0 ? void 0 : (_lastName$toLowerCase = lastName.toLowerCase()) === null || _lastName$toLowerCase === void 0 ? void 0 : _lastName$toLowerCase.includes(searchText === null || searchText === void 0 ? void 0 : searchText.toLowerCase()));
   });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "px-1"
   }, !showAuthUsers ? /*#__PURE__*/_react.default.createElement(_antd.Alert, {
-    message: `Authorized Users flow is disabled ${reasons?.length > 0 ? `due to ${reasons.toString()}` : ''}`,
+    message: "Authorized Users flow is disabled ".concat((reasons === null || reasons === void 0 ? void 0 : reasons.length) > 0 ? "due to ".concat(reasons.toString()) : ''),
     type: "info",
     showIcon: true
   }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_antd.Col, {
@@ -431,13 +450,13 @@ function AuthorizedUsersTable(_ref) {
     expandable: {
       expandedRowKeys: selectedRowKeys,
       expandedRowRender: record => {
-        return record?.key === deletingKey ? /*#__PURE__*/_react.default.createElement("div", {
+        return (record === null || record === void 0 ? void 0 : record.key) === deletingKey ? /*#__PURE__*/_react.default.createElement("div", {
           className: "expandable-row-container"
         }, /*#__PURE__*/_react.default.createElement("div", {
           className: "expandable-row-item"
         }, /*#__PURE__*/_react.default.createElement("div", {
           className: "port-protect-proceed-text"
-        }, "Delete \"", record?.firstName, ' ', record?.lastName, "\" from the authorized user list?"), /*#__PURE__*/_react.default.createElement("div", {
+        }, "Delete \"", record === null || record === void 0 ? void 0 : record.firstName, ' ', record === null || record === void 0 ? void 0 : record.lastName, "\" from the authorized user list?"), /*#__PURE__*/_react.default.createElement("div", {
           className: "port-protect-text"
         }, "This user will be immediately deleted. You can't undo this action"), /*#__PURE__*/_react.default.createElement("div", {
           style: {
@@ -455,7 +474,7 @@ function AuthorizedUsersTable(_ref) {
             setAddKey('');
             setDeletingKey(null);
           }
-        }, "Cancel")))) : record?.key === addKey && /*#__PURE__*/_react.default.createElement("div", {
+        }, "Cancel")))) : (record === null || record === void 0 ? void 0 : record.key) === addKey && /*#__PURE__*/_react.default.createElement("div", {
           className: "expandable-row-container"
         }, /*#__PURE__*/_react.default.createElement("div", {
           className: "expandable-row-item"
@@ -468,7 +487,7 @@ function AuthorizedUsersTable(_ref) {
           },
           disabled: !check,
           type: "primary",
-          onClick: () => save(record?.key, 'add')
+          onClick: () => save(record === null || record === void 0 ? void 0 : record.key, 'add')
         }, "Save"))));
       }
     },
@@ -477,7 +496,7 @@ function AuthorizedUsersTable(_ref) {
     },
     pagination: false
   }), /*#__PURE__*/_react.default.createElement(_antd.Button, {
-    disabled: addKey !== '' || deletingKey || editingKey !== '' || data?.length >= maxAuthorizedUsersLength,
+    disabled: addKey !== '' || deletingKey || editingKey !== '' || (data === null || data === void 0 ? void 0 : data.length) >= maxAuthorizedUsersLength,
     style: {
       border: 'none'
     },
@@ -488,4 +507,3 @@ function AuthorizedUsersTable(_ref) {
     className: "mt-2"
   })));
 }
-module.exports = exports.default;

@@ -7,7 +7,7 @@
     "icon": "icon.png",
     "scripts": {
         "start": "ist s",
-        "build": "ist b",
+        "build": "rm -rf dist && NODE_ENV=production babel ./src --out-dir dist --copy-files",
         "storybook": "ist storybook",
         "prepublish": "ist b -u"
     },
@@ -21,11 +21,16 @@
         "react": "^18.2.0"
     },
     "dependencies": {
+        "@babel/polyfill": "^7.12.1",
         "@ivoyant/component-loader": "^1.0.39",
         "@storybook/addon-knobs": "^6.4.0",
-        "@storybook/react": "^6.5.15"
+        "@storybook/react": "^6.5.15",
+        "babel-plugin-add-module-exports": "^1.0.4"
     },
     "devDependencies": {
+        "@babel/cli": "^7.20.7",
+        "@babel/core": "^7.20.12",
+        "@babel/preset-env": "^7.20.2",
         "@ivoyant/cli": "^1.1.2"
     }
 }
