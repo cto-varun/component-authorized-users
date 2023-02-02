@@ -1,0 +1,56 @@
+.ebbTextGreen {
+    color: #52c41a;
+    font-weight: 700;
+}
+.headingEnrollment {
+    font-size: 30px;
+    font-weight: 600 !important;
+}
+.p-2 {
+    padding: 2rem !important;
+}
+
+.px-1 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.result-text {
+    padding: 20px 15px;
+    font-weight: normal;
+    background: #edebe955;
+}
+.table-row {
+    background-color: rgb(249, 248, 247) !important;
+}
+
+.table-wrapper .table-row .ant-table-cell {
+    padding: auto !important;
+    padding-left: 15px !important;
+}
+.terms-text {
+    color: rgb(24, 144, 255);
+}
+.checkbox-icon {
+    margin-right: 10px;
+}
+.terms-condition-text {
+    color: rgb(89, 89, 89);
+}
+.button-col {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mt-2 {
+    margin-top: 2rem !important;
+}
